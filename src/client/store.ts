@@ -92,7 +92,7 @@ const productsLoadEpic: ExampleEpic = (action$, store$, { api }) => action$.pipe
     ofType('PRODUCTS_LOAD'),
     mergeMap((a: ReturnType<typeof productsLoad>) => {
         return from(api.getProducts()).pipe(
-            map(products => productsLoaded(products.data)),
+            map(products => productsLoaded(products)),
         );
     }),
 );
@@ -101,7 +101,7 @@ const productDetailsLoadEpic: ExampleEpic = (action$, store$, { api }) => action
     ofType('PRODUCT_DETAILS_LOAD'),
     mergeMap((a: ReturnType<typeof productDetailsLoad>) => {
         return from(api.getProductById(a.id)).pipe(
-            map(products => productDetailsLoaded(products.data)),
+            map(products => productDetailsLoaded(products)),
         );
     }),
 );
